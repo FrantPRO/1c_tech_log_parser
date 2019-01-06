@@ -9,8 +9,11 @@ directory = "/tmp/123"
 # Формат папок логов <ИмяПроцесса>_<ИдентификаторПроцесса>
 # Формат фалов логов: имя файла = ГГММДДЧЧ.log, начало файла ММ:СС.тттт-д,<ИмяСобытия>,<Уровень>,<Ключ=Значение>,...
 def read_log(str_directory, str_file):
+
     m_result = []
+
     log_date = str_file[4:6] + "." + str_file[2:4] + ".20" + str_file[0:2] + " " + str_file[6:8] + ":"
+
     with open(os.path.join(str_directory, str_file), 'r') as f:
         for line in f:
             m_params = line.split(',')
