@@ -34,7 +34,7 @@ def read_log(str_directory, str_file):
                     if len(el) == 1:
                         d_result[el[0]] = el[0]
                     else:
-                        d_result[el[0]] = el[1]
+                        d_result[el[0]] = el[1].strip()
 
                 m_result.append(d_result)
 
