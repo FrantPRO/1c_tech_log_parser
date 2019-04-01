@@ -3,7 +3,8 @@ import os
 import json
 
 # Дериктория для поиска файлов логов
-directory = "/tmp/123"
+directory = os.path.normpath(r'\\1cv8\logs')
+
 
 # Значение отбора данных
 selection = "meta"
@@ -20,13 +21,12 @@ def read_log_file(str_directory, str_file):
     log_date = str_file[4:6] + "." + str_file[2:4] + ".20" + str_file[0:2]
     log_hour = str_file[6:8] + ":"
 
-    with open(os.path.join(str_directory, str_file), 'r') as f:
+    with open(os.path.join(str_directory, str_file), 'r', encoding='UTF-8') as f:
 
         dm_result = []
 
         # Читаем файл по строкам
         for line in f:
-            # print(line)
 
             # Если искомое значение есть в строке
             if selection in line:
@@ -58,14 +58,14 @@ result = []
 
 # Получаем объект-генератор и на каждой итерации получаем кортеж files со списком файлов из очередной папки
 for d, dirs, files in os.walk(directory):
-    # print(files)
 
     # Отбираем только файлы логов
     files = filter(lambda x: x.endswith('.log'), files)
 
     for file in files:
-        # print(d)
-        result.append(read_log_file(d, file))
+        log_file = read_log_file(d, file)
+        if log_file:
+            result.append(log_file)
 
 print(json.dumps(result))
 
