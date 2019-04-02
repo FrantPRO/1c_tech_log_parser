@@ -5,10 +5,11 @@ import json
 # Дериктория для поиска файлов логов
 directory = os.path.normpath(r'\\1cv8\logs')
 
-
 # Значение отбора данных
 selection = "meta"
 
+# Дата отбора логов в формате ГГММДД, где ГГ-год, ММ-месяц, ДД-день
+data_s = '190401'
 
 # функция открывает файл и читает по строке с контрлем конца строки
 def line_reader(file_path):
@@ -83,7 +84,7 @@ result = []
 for d, dirs, files in os.walk(directory):
 
     # Отбираем только файлы логов
-    files = filter(lambda x: x.endswith('.log'), files)
+    files = filter(lambda x: x.endswith('.log') and data_s in x, files)
 
     for file in files:
         log_file = read_log_file(d, file)
