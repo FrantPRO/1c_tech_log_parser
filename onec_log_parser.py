@@ -77,18 +77,19 @@ def read_log_file(str_directory, str_file):
     return m_result
 
 
-# Список для результата
-result = []
+if __name__ == 'main':
+    # Список для результата
+    result = []
 
-# Получаем объект-генератор и на каждой итерации получаем кортеж files со списком файлов из очередной папки
-for d, dirs, files in os.walk(directory):
+    # Получаем объект-генератор и на каждой итерации получаем кортеж files со списком файлов из очередной папки
+    for d, dirs, files in os.walk(directory):
 
-    # Отбираем только файлы логов
-    files = filter(lambda x: x.endswith('.log') and data_s in x, files)
+        # Отбираем только файлы логов
+        files = filter(lambda x: x.endswith('.log') and data_s in x, files)
 
-    for file in files:
-        log_file = read_log_file(d, file)
-        if log_file:
-            result.append(log_file)
+        for file in files:
+            log_file = read_log_file(d, file)
+            if log_file:
+                result.append(log_file)
 
-print(json.dumps(result, ensure_ascii=False))
+    print(json.dumps(result, ensure_ascii=False))
