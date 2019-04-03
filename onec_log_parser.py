@@ -8,6 +8,7 @@ directory = os.path.normpath(r'\\1cv8\logs')
 # Значение отбора данных
 selection = "meta"
 
+
 # функция открывает файл и читает по строке с контрлем конца строки
 def line_reader(file_path):
     with open(file_path, 'r', encoding='utf-8-sig') as f:
