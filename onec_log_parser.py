@@ -6,7 +6,7 @@ import json
 directory = os.path.normpath(r'\\1cv8\logs')
 
 # Значение отбора данных
-selection = "meta"
+selection = 'LogKeeper' #"meta"
 
 
 # функция открывает файл и читает по строке с контрлем конца строки
